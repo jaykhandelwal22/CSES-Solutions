@@ -1,0 +1,34 @@
+#include <iostream>
+#include<vector>
+#include<algorithm>
+#include <queue>
+
+using namespace std;
+
+
+int F(int n,int k) {
+    if(n==1) {
+        return 0;
+    }
+    if(k<=(n+1)/2) {
+        if(n%2!=0 && k==(n+1)/2) {
+            return 0;
+        }
+        return 2*k-1;
+    }
+    if(n%2==0) {
+        return 2*F(n/2,k-n/2);
+    }
+    return 2*F((n-1)/2,k-(n+1)/2)+2;
+}
+
+
+int main() {
+    int q;
+    cin>>q;
+    while(q--) {
+        int n,k;
+        cin>>n>>k;
+        cout<<F(n,k)+1<<endl;
+    }
+}
